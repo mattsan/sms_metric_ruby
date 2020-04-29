@@ -4,7 +4,7 @@ require 'aws-sdk-dynamodb'
 require_relative 'storage'
 require_relative 'metric'
 
-class Handler
+class SmsMetric
   SECONDS_PER_DAY = 24 * 60 * 60
   TIMEZONE = '+09:00'
 
