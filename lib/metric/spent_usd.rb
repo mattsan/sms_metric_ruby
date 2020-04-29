@@ -2,6 +2,8 @@ class Metric
   class SpentUSD
     include Enumerable
 
+    Item = Struct.new('Item', :timestamp, :value)
+
     METRIC_DATA_QUERIES = [
       {
         id: 'spentUSD',

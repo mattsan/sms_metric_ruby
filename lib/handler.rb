@@ -18,7 +18,7 @@ class Handler
     spent_usd = Metric::SpentUSD.new
 
     spent_usd.fetch(@start_date, @end_date).each do |item|
-      storage.store(item.timestamp, item.value)
+      storage.store(item.timestamp.getlocal(TIMEZONE), item.value)
     end
   end
 

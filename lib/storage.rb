@@ -4,14 +4,13 @@ class Storage
   REGION = 'ap-northeast-1'
 
   def store(time, value)
-    # client.put_item(
-    pp({
+    client.put_item(
       table_name: table_name,
       item: {
         timestamp: time.strftime('%Y-%m-%d'),
         value: value
       }
-    })
+    )
   end
 
   private
