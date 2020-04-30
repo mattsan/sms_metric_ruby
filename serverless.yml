@@ -11,6 +11,11 @@ provider:
   iamRoleStatements:
     - Effect: Allow
       Action:
+        - 'cloudwatch:GetMetricData'
+      Resource:
+        '*'
+    - Effect: Allow
+      Action:
         - 'dynamodb:PutItem'
       Resource:
         Fn::Join:
