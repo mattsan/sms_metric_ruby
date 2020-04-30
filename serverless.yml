@@ -19,16 +19,14 @@ provider:
         - 'dynamodb:PutItem'
       Resource:
         Fn::Join:
-          - ''
-          - - Fn::Join:
-                - ':'
-                - - arn:aws:dynamodb
-                  - Ref: AWS::Region
-                  - Ref: AWS::AccountId
-                  - Fn::Join:
-                      - '/'
-                      - - table
-                        - Ref: SmsSpentUsd
+          - ':'
+          - - arn:aws:dynamodb
+            - Ref: AWS::Region
+            - Ref: AWS::AccountId
+            - Fn::Join:
+                - '/'
+                - - table
+                  - Ref: SmsSpentUsd
 
 functions:
   store:
