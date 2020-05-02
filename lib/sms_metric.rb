@@ -21,7 +21,7 @@ class SmsMetric
   SECONDS_PER_DAY = 24 * 60 * 60
   TIMEZONE = '+09:00'
 
-  def self.store(event:, context:)
+  def self.store_spent_usd(event:, context:)
     end_date = event['end_date']&.date_string_to_time || Time.today
     start_date = event['start_date']&.date_string_to_time || (end_date - SECONDS_PER_DAY)
 

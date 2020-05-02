@@ -29,8 +29,8 @@ provider:
                   - Ref: SmsSpentUsd
 
 functions:
-  store:
-    handler: lib/sms_metric.SmsMetric.store
+  store_spent_usd:
+    handler: lib/sms_metric.SmsMetric.store_spent_usd
     environment:
       TABLE_NAME: {Ref: SmsSpentUsd}
 #    events:
