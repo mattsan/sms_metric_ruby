@@ -1,5 +1,7 @@
 require_relative 'lib/sms_metric'
 
-def store(event:, context:)
-  SmsMetric.new(event).store
+class Handler
+  def self.store(event:, context:)
+    SmsMetric.new(event).store
+  end
 end

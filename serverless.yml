@@ -30,7 +30,7 @@ provider:
 
 functions:
   store:
-    handler: handler.store
+    handler: handler.Handler.store
     environment:
       TABLE_NAME: {Ref: SmsSpentUsd}
 #    events:
