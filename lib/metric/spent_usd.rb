@@ -1,6 +1,9 @@
+require 'forwardable'
+
 class Metric
   class SpentUSD
     include Enumerable
+    extend Forwardable
 
     Item = Struct.new('Item', :timestamp, :value)
 
@@ -22,15 +25,7 @@ class Metric
       self
     end
 
-    def each
-      if block_given?
-        @spent_usd.each do |item|
-          yield item
-        end
-      else
-        to_enum
-      end
-    end
+    def_delegators :@spent_usd, :each
 
     private
 
