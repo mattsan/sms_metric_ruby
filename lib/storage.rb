@@ -22,6 +22,6 @@ class Storage
   private
 
   def client
-    @client ||= Aws::DynamoDB::Client.new(region: REGION, stub_responses: true)
+    @client ||= Aws::DynamoDB::Client.new(region: REGION)
   end
 end
