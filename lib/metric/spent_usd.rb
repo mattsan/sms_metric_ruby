@@ -24,8 +24,8 @@ class Metric
 
     def each
       if block_given?
-        @spent_usd.each do |spent_usd|
-          yield spent_usd
+        @spent_usd.each do |item|
+          yield item
         end
       else
         to_enum
