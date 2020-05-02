@@ -30,7 +30,7 @@ provider:
 
 functions:
   store:
-    handler: lib/sms_metric.store
+    handler: lib/sms_metric.SmsMetric.store
     environment:
       TABLE_NAME: {Ref: SmsSpentUsd}
 #    events:
