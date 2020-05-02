@@ -22,12 +22,13 @@ end
 class SmsMetric
   SECONDS_PER_DAY = 24 * 60 * 60
   TIMEZONE = '+09:00'
+  TABLE_NAME = ENV['TABLE_NAME']
 
   def self.store_spent_usd(event:, context:)
     end_date = event['end_date']&.date_string_to_time || Time.today
     start_date = event['start_date']&.date_string_to_time || (end_date - SECONDS_PER_DAY)
 
-    storage = Storage.new
+    storage = Storage.new(TABLE_NAME)
     spent_usd = Metric::SpentUSD.new
 
     spent_usd.fetch(start_date, end_date, SECONDS_PER_DAY).each do |item|
