@@ -7,14 +7,14 @@ require_relative 'storage'
 require_relative 'metric'
 
 class String
-  def date_string_to_time
-    Time.parse("#{self}T00:00:00#{SmsMetric::TIMEZONE}")
+  def date_string_to_time(timezone)
+    Time.parse("#{self}T00:00:00#{timezone}")
   end
 end
 
 class Time
-  def self.today
-    current = now.getlocal(SmsMetric::TIMEZONE)
+  def self.today(timezone)
+    current = now.getlocal(timezone)
     new(current.year, current.month, current.day, 0, 0, 0, current.strftime('%:z'))
   end
 end
@@ -25,8 +25,8 @@ class SmsMetric
   TABLE_NAME = ENV['TABLE_NAME']
 
   def self.store_spent_usd(event:, context:)
-    end_date = event['end_date']&.date_string_to_time || Time.today
-    start_date = event['start_date']&.date_string_to_time || (end_date - SECONDS_PER_DAY)
+    end_date = event['end_date']&.date_string_to_time(TIMEZONE) || Time.today(TIMEZONE)
+    start_date = event['start_date']&.date_string_to_time(TIMEZONE) || (end_date - SECONDS_PER_DAY)
 
     storage = Storage.new(TABLE_NAME)
     spent_usd = Metric::SpentUSD.new
