@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'aws-sdk-dynamodb'
 
 class Storage
@@ -16,11 +18,10 @@ class Storage
   private
 
   def client
-    @client ||= Aws::DynamoDB::Client.new(region: REGION)
+    @client ||= Aws::DynamoDB::Client.new(region: REGION, stub_responses: true)
   end
 
   def table_name
     @table_name ||= ENV['TABLE_NAME']
   end
 end
-

@@ -28,6 +28,13 @@ provider:
                 - - table
                   - Ref: SmsSpentUsd
 
+package:
+  exclude:
+    - Gemfile
+    - Gemfile.lock
+    - .rubocop.yml
+    - doc/**
+
 functions:
   store_spent_usd:
     handler: lib/sms_metric.SmsMetric.store_spent_usd

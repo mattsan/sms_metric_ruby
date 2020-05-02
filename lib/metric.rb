@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 require 'aws-sdk-cloudwatch'
 
 class Metric
-  REGION =  'ap-northeast-1'
+  REGION = 'ap-northeast-1'
 
   def self.get_metric_data(params)
     client = Aws::CloudWatch::Client.new(region: REGION)

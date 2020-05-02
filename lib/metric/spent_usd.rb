@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'forwardable'
 
 class Metric
@@ -19,8 +21,8 @@ class Metric
       )
 
       @spent_usd = metric_data
-        .flat_map {|metric| metric.timestamps.zip(metric.values) }
-        .map {|timestamp, value| Item.new(timestamp, value) }
+                   .flat_map { |metric| metric.timestamps.zip(metric.values) }
+                   .map { |timestamp, value| Item.new(timestamp, value) }
 
       self
     end
@@ -40,7 +42,7 @@ class Metric
             },
             period: period,
             stat: 'Maximum'
-          },
+          }
         }
       ]
     end
