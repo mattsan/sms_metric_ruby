@@ -3,7 +3,7 @@
 require 'aws-sdk-dynamodb'
 
 class Storage
-  REGION = 'ap-northeast-1'
+  REGION = ENV['REGION']
 
   def store(time, value)
     client.put_item(

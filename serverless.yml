@@ -40,6 +40,7 @@ functions:
     handler: lib/sms_metric.SmsMetric.store_spent_usd
     environment:
       TABLE_NAME: {Ref: SmsSpentUsd}
+      REGION: {Ref: AWS::Region}
     events:
       - schedule:
           rate: cron(0 15 * * ? *) # 15:00 UTC = 01:00 JST
