@@ -8,9 +8,9 @@ class SmsMetric
   SECONDS_PER_DAY = 24 * 60 * 60
   TIMEZONE = '+09:00'
 
-  def initialize(event)
-    @end_date = date_string_to_time(event['end_date']) || today
-    @start_date = date_string_to_time(event['start_date']) || (@end_date - SECONDS_PER_DAY)
+  def initialize(start_date, end_date)
+    @end_date = date_string_to_time(end_date) || today
+    @start_date = date_string_to_time(start_date) || (@end_date - SECONDS_PER_DAY)
   end
 
   def store
@@ -36,3 +36,6 @@ class SmsMetric
   end
 end
 
+def store(event:, context:)
+  SmsMetric.new(event['start_date'], event['end_date']).store
+end
