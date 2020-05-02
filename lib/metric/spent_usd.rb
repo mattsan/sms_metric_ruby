@@ -36,10 +36,7 @@ class Metric
         {
           id: 'spentUSD',
           metric_stat: {
-            metric: {
-              namespace: 'AWS/SNS',
-              metric_name: 'SMSMonthToDateSpentUSD'
-            },
+            metric: { namespace: 'AWS/SNS', metric_name: 'SMSMonthToDateSpentUSD' },
             period: period,
             stat: 'Maximum'
           }

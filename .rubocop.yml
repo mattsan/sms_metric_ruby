@@ -27,6 +27,3 @@ Style/HashTransformValues:
 
 Style/Documentation:
   Enabled: false
-
-Metrics/MethodLength:
-  Max: 15
