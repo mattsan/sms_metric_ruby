@@ -4,27 +4,13 @@ class Metric
 
     Item = Struct.new('Item', :timestamp, :value)
 
-    METRIC_DATA_QUERIES = [
-      {
-        id: 'spentUSD',
-        metric_stat: {
-          metric: {
-            namespace: 'AWS/SNS',
-            metric_name: 'SMSMonthToDateSpentUSD'
-          },
-          period: 24 * 60 * 60, # seconds per day
-          stat: 'Maximum'
-        },
-      }
-    ]
-
     def initialize
       @spent_usd = []
     end
 
-    def fetch(start_time, end_time)
+    def fetch(start_time, end_time, period)
       metric_data = Metric.get_metric_data(
-        metric_data_queries: METRIC_DATA_QUERIES,
+        metric_data_queries: metric_data_queries(period),
         start_time: start_time,
         end_time: end_time
       )
@@ -44,6 +30,24 @@ class Metric
       else
         to_enum
       end
+    end
+
+    private
+
+    def metric_data_queries(period)
+      [
+        {
+          id: 'spentUSD',
+          metric_stat: {
+            metric: {
+              namespace: 'AWS/SNS',
+              metric_name: 'SMSMonthToDateSpentUSD'
+            },
+            period: period,
+            stat: 'Maximum'
+          },
+        }
+      ]
     end
   end
 end

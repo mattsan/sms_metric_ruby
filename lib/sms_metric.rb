@@ -28,7 +28,7 @@ class SmsMetric
     storage = Storage.new
     spent_usd = Metric::SpentUSD.new
 
-    spent_usd.fetch(start_date, end_date).each do |item|
+    spent_usd.fetch(start_date, end_date, SECONDS_PER_DAY).each do |item|
       storage.store(item.timestamp.getlocal(TIMEZONE), item.value)
     end
   end
