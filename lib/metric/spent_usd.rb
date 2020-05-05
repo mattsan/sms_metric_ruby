@@ -7,6 +7,8 @@ class Metric
     include Enumerable
     extend Forwardable
 
+    TYPE = 'spentUSD'
+
     Item = Struct.new('Item', :timestamp, :value)
 
     def initialize
@@ -34,7 +36,7 @@ class Metric
     def metric_data_queries(period)
       [
         {
-          id: 'spentUSD',
+          id: TYPE,
           metric_stat: {
             metric: { namespace: 'AWS/SNS', metric_name: 'SMSMonthToDateSpentUSD' },
             period: period,

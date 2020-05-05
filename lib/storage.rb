@@ -9,11 +9,12 @@ class Storage
     @table_name = table_name
   end
 
-  def store(time, value)
+  def store(time, type, value)
     client.put_item(
       table_name: @table_name,
       item: {
         timestamp: time.strftime('%Y-%m-%d'),
+        type: type,
         value: value
       }
     )
